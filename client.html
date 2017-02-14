@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+    //var formData = {uid:"1",udata:"123333"};
+    $(document).ready(function() {
+        $( "#b1").click(function() {
+            formData = {uid: $("#iid").val(),udata: $("#idata").val()};
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:3000',
+                data:  formData,
+                // contentType: "application/x-www-form-urlencoded",
+                dataType: 'json',
+                // crossDomain: true,
+            })
+                // success: function(data) {
+                //     alert('data: ' + data);
+                // }
+                // JSON.stringify({"uid":"1", "udata":"111"}),
+          .done(function(msg) { console.log(msg); }); //bug??
+        });
+
+        $( "#kill").click(function() {
+            //formData = {uid: $("#iid").val(),udata: $("#idata").val()};
+            $.ajax({
+                type: "GET",
+                url: 'http://localhost:3000/kill',
+                //data:  formData,
+                // contentType: "application/x-www-form-urlencoded",
+                dataType: 'json',
+                // crossDomain: true,
+            })
+          .done(function(udatas) { console.log(udatas); }); //bug??
+        });
+
+
+
+
+    });
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+        Client: <input type="text" id="iid"><br>
+        Data: <input type="text" id="idata"><br>
+        <button id="b1">Send data</button><br>
+        <button id="kill">Kill</button>
+    </div>
+</body>
+
+</html>
